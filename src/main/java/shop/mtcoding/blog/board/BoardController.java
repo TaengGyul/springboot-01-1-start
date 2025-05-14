@@ -15,4 +15,14 @@ public class BoardController {
     public String boardSaveForm() {
         return "board/save-form";
     }
+
+    @GetMapping("/board/1")
+    public String boardDetail() {
+        return "board/detail";
+    }
+
+    @GetMapping("/board/1/update-form")
+    public String boardUpdateForm() {
+        return "board/update-form";
+    }
 }
