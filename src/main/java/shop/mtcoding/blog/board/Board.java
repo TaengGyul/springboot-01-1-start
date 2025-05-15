@@ -3,7 +3,8 @@ package shop.mtcoding.blog.board;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
+
 
 @Entity // 이 클래스가 데이터베이스 테이블과 매핑되는 엔티티임을 명시
 @Data // getter, setter, toString 등을 컴파일 시 자동으로 생성
