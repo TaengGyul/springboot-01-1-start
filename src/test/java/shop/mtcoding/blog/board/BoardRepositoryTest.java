@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
+import java.util.List;
+
 // 내가 만든 해당 객체를 테스트 전용 IoC에 로드
 @Import(BoardRepository.class)
 @DataJpaTest // DB 관련 모든 객체를 IoC에 로드
@@ -22,4 +24,10 @@ public class BoardRepositoryTest {
         // when (insert 메서드 테스트)
         boardRepository.save(title, content);
     } // 메서드 종료시 자동 rollback이 된다.
+
+    @Test
+    public void findAll_test() {
+        List<Board> boards = boardRepository.findAll();
+        System.out.println();
+    }
 }
