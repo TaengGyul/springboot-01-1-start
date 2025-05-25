@@ -27,7 +27,7 @@ public class BoardRepository {
         // 3. 쿼리를 데이터베이스에 전송
         query.executeUpdate();
     }
-
+    
     public List<Board> findAll() {
         // 1. 쿼리 작성 (쿼리 결과를 Board.class에 오브젝트 매핑한다.)
         Query query = em.createNativeQuery("select * from board_tb order by id desc", Board.class);

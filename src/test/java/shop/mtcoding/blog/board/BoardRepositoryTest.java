@@ -1,5 +1,6 @@
 package shop.mtcoding.blog.board;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -25,9 +26,31 @@ public class BoardRepositoryTest {
         boardRepository.save(title, content);
     } // 메서드 종료시 자동 rollback이 된다.
 
+//    @Test
+//    public void findAll_test() {
+//        // given
+//
+//        // when
+//        List<Board> boardList = boardRepository.findAll();
+//
+//        // then
+//        if (boardList.isEmpty()) {
+//            System.out.println("boardList is empty");
+//        } else {
+//            for (Board board : boardList) {
+//                System.out.println("Id : " + board.getId() + ", title : " + board.getTitle() + ", content : " + board.getContent());
+//            }
+//        }
+//    }
+
+    // 책에 나온 테스트 코드
     @Test
     public void findAll_test() {
         List<Board> boards = boardRepository.findAll();
-        System.out.println();
+        Assertions.assertThat(boards.get(0).getId()).isEqualTo(5);
+        Assertions.assertThat(boards.get(0).getTitle()).isEqualTo("제목5");
+        Assertions.assertThat(boards.get(0).getContent()).isEqualTo("내용5");
+        System.out.println("테스트 성공!!");
     }
+
 }
