@@ -63,4 +63,25 @@ public class BoardRepositoryTest {
         Assertions.assertThat(board.getTitle()).isEqualTo("제목1");
         Assertions.assertThat(board.getContent()).isEqualTo("내용1");
     }
+
+    @Test
+    public void deleteById_test() {
+        int id = 1;
+        boardRepository.deleteById(id);
+        System.out.println("삭제 성공!!!");
+    }
+
+    @Test
+    public void updateById_test() {
+        // given
+        int id = 1;
+        String title = "변경된 글제목!!!";
+        String content = "변경된 글 내용!!!";
+
+        // when
+        boardRepository.updateById(id, title, content);
+
+        //eye
+        System.out.println("게시글 ID : " + id + " 게시글 제목 : " + title + " 게시글 내용 : " + content);
+    }
 }

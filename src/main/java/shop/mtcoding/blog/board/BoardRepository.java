@@ -39,9 +39,25 @@ public class BoardRepository {
     public Board findById(int id) {
         // 1. 쿼리 작성 (쿼리 결과를 Board.class에 오브젝트 매핑을 한다.)
         Query query = em.createNativeQuery("select * from board_tb where id = ?", Board.class);
-       
+
         query.setParameter(1, id);
         // 3. 쿼리를 데이터 베이스에 전송 후 결과 응답 받기
         return (Board) query.getSingleResult();
+    }
+
+    @Transactional
+    public void deleteById(int id) {
+        Query query = em.createNativeQuery("delete from board_tb where id = ?", Board.class);
+        query.setParameter(1, id);
+        query.executeUpdate();
+    }
+
+    @Transactional
+    public void updateById(int id, String title, String content) {
+        Query query = em.createNativeQuery("update board_tb set title = ?, content = ? where id = ?");
+        query.setParameter(1, title);
+        query.setParameter(2, content);
+        query.setParameter(3, id);
+        query.executeUpdate();
     }
 }

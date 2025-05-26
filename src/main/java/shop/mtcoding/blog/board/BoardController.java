@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -46,8 +47,25 @@ public class BoardController {
         return "board/detail";
     }
 
-    @GetMapping("/board/1/update-form")
-    public String boardUpdateForm() {
+    @GetMapping("/board/{id}/update-form")
+    public String boardUpdateForm(@PathVariable("id") int id, Model model) {
+        Board board = boardRepository.findById(id);
+        model.addAttribute("model", board);
         return "board/update-form";
     }
+
+    // 게시글 삭제하기
+    @PostMapping("/board/{id}/delete")
+    public String boardDelete(@PathVariable("id") int id) {
+        boardRepository.deleteById(id);
+        return "redirect:/board";
+    }
+
+    // 게시글 수정하기
+    @PostMapping("/board/{id}/update")
+    public String boardUpdate(@PathVariable("id") int id, String title, String content) {
+        boardRepository.updateById(id, title, content);
+        return "redirect:/board/" + id;
+    }
 }
+
