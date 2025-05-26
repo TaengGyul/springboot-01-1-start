@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -37,8 +38,11 @@ public class BoardController {
         return "board/save-form";
     }
 
-    @GetMapping("/board/1")
-    public String boardDetail() {
+    // 게시글 상세보기
+    @GetMapping("/board/{id}")
+    public String boardDetail(@PathVariable("id") int id, Model model) {
+        Board board = boardRepository.findById(id);
+        model.addAttribute("model", board);
         return "board/detail";
     }
 

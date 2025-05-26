@@ -24,6 +24,9 @@ public class BoardRepositoryTest {
 
         // when (insert 메서드 테스트)
         boardRepository.save(title, content);
+
+        //eye
+        System.out.println("새로운 글 제목 : " + title + " 새로운 글 내용 : " + content);
     } // 메서드 종료시 자동 rollback이 된다.
 
 //    @Test
@@ -53,4 +56,11 @@ public class BoardRepositoryTest {
         System.out.println("테스트 성공!!");
     }
 
+    @Test
+    public void findById_test() {
+        int id = 1;
+        Board board = boardRepository.findById(id);
+        Assertions.assertThat(board.getTitle()).isEqualTo("제목1");
+        Assertions.assertThat(board.getContent()).isEqualTo("내용1");
+    }
 }
